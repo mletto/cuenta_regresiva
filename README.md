@@ -28,8 +28,8 @@ Pantalla de cuenta regresiva en **pantalla completa** (`00:45` → `00:00`), tip
 ## Uso rápido (Mac o Linux)
 
 ```bash
-git clone git@github.com:TU_USUARIO/cuenta-regresiva-puma-hyrox.git
-cd cuenta-regresiva-puma-hyrox
+git clone git@github.com:mletto/cuenta_regresiva.git
+cd cuenta_regresiva
 chmod +x run.sh
 ./run.sh
 ```
@@ -41,9 +41,12 @@ chmod +x run.sh
 
 ## Ubuntu — instalación en una PC de evento
 
+1. Configurá una **Deploy Key** en la PC Ubuntu (solo una vez). Guía: [INSTALACION-UBUNTU.md → Clave SSH](INSTALACION-UBUNTU.md#clave-ssh-en-ubuntu-deploy-key--recomendado)
+2. Luego:
+
 ```bash
-git clone git@github.com:TU_USUARIO/cuenta-regresiva-puma-hyrox.git
-cd cuenta-regresiva-puma-hyrox
+git clone git@github.com:mletto/cuenta_regresiva.git
+cd cuenta_regresiva
 chmod +x install-ubuntu.sh iniciar.sh run.sh
 ./install-ubuntu.sh
 ```
@@ -91,7 +94,7 @@ La fuente **FF DIN for Puma** está en `fonts/`. Es material con licencia de Pum
 2. En tu Mac, desde la carpeta del proyecto:
 
 ```bash
-git remote add origin git@github.com:TU_USUARIO/cuenta-regresiva-puma-hyrox.git
+git remote add origin git@github.com:mletto/cuenta_regresiva.git
 git push -u origin main
 ```
 
@@ -99,7 +102,7 @@ Si el repo ya tiene commit local (como este proyecto):
 
 ```bash
 git remote -v                    # ver si ya hay remote
-git remote set-url origin git@github.com:TU_USUARIO/NOMBRE-DEL-REPO.git
+git remote set-url origin git@github.com:mletto/cuenta_regresiva.git
 git push -u origin main
 ```
 

@@ -4,18 +4,97 @@ Guía paso a paso para ejecutar `cuenta.py` en Ubuntu (pantalla completa, fuente
 
 ## Instalación automática (recomendada)
 
-Si clonaste el repo desde GitHub (SSH):
+Después de configurar la **Deploy Key** (sección siguiente), en la PC Ubuntu:
 
 ```bash
-git clone git@github.com:TU_USUARIO/cuenta-regresiva-puma-hyrox.git
-cd cuenta-regresiva-puma-hyrox
+git clone git@github.com:mletto/cuenta_regresiva.git
+cd cuenta_regresiva
 chmod +x install-ubuntu.sh iniciar.sh run.sh
 ./install-ubuntu.sh
 ```
 
-> En la PC Ubuntu necesitás tu clave SSH en `~/.ssh/` o usar un deploy key del repo.
-
 Activa **inicio de sesión automático** en Configuración → Usuarios y reinicia.
+
+---
+
+## Clave SSH en Ubuntu (Deploy Key — recomendado)
+
+La PC del evento necesita poder clonar el repo **privado** por SSH. Lo más seguro es una **Deploy Key**: clave solo para este repositorio, solo lectura.
+
+### Paso 1 — Generar clave en la PC Ubuntu
+
+```bash
+ssh-keygen -t ed25519 -C "ubuntu-cuenta-regresiva" -f ~/.ssh/id_ed25519_github
+```
+
+Pulsa **Enter** en la passphrase (vacía) si es un kiosco dedicado al evento.
+
+### Paso 2 — Copiar la clave pública
+
+```bash
+cat ~/.ssh/id_ed25519_github.pub
+```
+
+Copia **toda** la línea (empieza con `ssh-ed25519`).
+
+### Paso 3 — Agregar la Deploy Key en GitHub
+
+1. Abrí el repo: **https://github.com/mletto/cuenta_regresiva**
+2. **Settings** → **Deploy keys** → **Add deploy key**
+3. **Title:** `Ubuntu evento` (o el nombre que quieras)
+4. **Key:** pegá la clave pública del paso 2
+5. **Allow write access:** desmarcado (solo lectura)
+6. **Add key**
+
+### Paso 4 — Configurar SSH en Ubuntu
+
+```bash
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+nano ~/.ssh/config
+```
+
+Pegá esto:
+
+```
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_github
+  IdentitiesOnly yes
+```
+
+Guardá: `Ctrl+O`, Enter, `Ctrl+X`.
+
+```bash
+chmod 600 ~/.ssh/config ~/.ssh/id_ed25519_github
+```
+
+### Paso 5 — Probar conexión
+
+```bash
+ssh -T git@github.com
+```
+
+Respuesta esperada (similar):
+
+```text
+Hi mletto/cuenta_regresiva! You've successfully authenticated...
+```
+
+Si dice `Permission denied` o `Repository not found` al clonar, revisá que la Deploy Key esté en el repo correcto y que `~/.ssh/config` apunte a `id_ed25519_github`.
+
+### Paso 6 — Clonar e instalar
+
+```bash
+cd ~
+git clone git@github.com:mletto/cuenta_regresiva.git
+cd cuenta_regresiva
+chmod +x install-ubuntu.sh iniciar.sh run.sh
+./install-ubuntu.sh
+```
+
+> **Sin internet en el evento:** cloná una vez con internet, o copiá la carpeta del proyecto por USB (sin la carpeta `venv`).
 
 ---
 
@@ -30,7 +109,9 @@ Activa **inicio de sesión automático** en Configuración → Usuarios y reinic
 
 ## 1. Copiar el proyecto en la PC Ubuntu
 
-No copies la carpeta `venv` desde Mac (no sirve en Linux). Sí copia todo lo demás:
+**Opción recomendada:** clonar con Git (ver [Clave SSH en Ubuntu](#clave-ssh-en-ubuntu-deploy-key--recomendado)).
+
+**Opción alternativa (USB):** no copies la carpeta `venv` desde Mac (no sirve en Linux). Sí copia todo lo demás:
 
 ```
 Cuenta Regresiva/
