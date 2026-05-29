@@ -28,7 +28,7 @@ Pantalla de cuenta regresiva en **pantalla completa** (`00:45` → `00:00`), tip
 ## Uso rápido (Mac o Linux)
 
 ```bash
-git clone https://github.com/TU_USUARIO/cuenta-regresiva-puma-hyrox.git
+git clone git@github.com:TU_USUARIO/cuenta-regresiva-puma-hyrox.git
 cd cuenta-regresiva-puma-hyrox
 chmod +x run.sh
 ./run.sh
@@ -42,7 +42,7 @@ chmod +x run.sh
 ## Ubuntu — instalación en una PC de evento
 
 ```bash
-git clone https://github.com/TU_USUARIO/cuenta-regresiva-puma-hyrox.git
+git clone git@github.com:TU_USUARIO/cuenta-regresiva-puma-hyrox.git
 cd cuenta-regresiva-puma-hyrox
 chmod +x install-ubuntu.sh iniciar.sh run.sh
 ./install-ubuntu.sh
@@ -85,15 +85,40 @@ Tras instalar en Ubuntu, cerrá sesión una vez para aplicar el grupo `dialout`.
 
 La fuente **FF DIN for Puma** está en `fonts/`. Es material con licencia de Puma; usá un **repositorio privado** en GitHub si no tenés permiso de distribución pública.
 
-## Subir a GitHub
+## Subir a GitHub (SSH)
+
+1. Creá un repo vacío en GitHub (sin README, sin `.gitignore`).
+2. En tu Mac, desde la carpeta del proyecto:
 
 ```bash
-git init
-git add .
-git commit -m "Cuenta regresiva Puma Hyrox para evento"
-git branch -M main
-git remote add origin https://github.com/TU_USUARIO/cuenta-regresiva-puma-hyrox.git
+git remote add origin git@github.com:TU_USUARIO/cuenta-regresiva-puma-hyrox.git
 git push -u origin main
+```
+
+Si el repo ya tiene commit local (como este proyecto):
+
+```bash
+git remote -v                    # ver si ya hay remote
+git remote set-url origin git@github.com:TU_USUARIO/NOMBRE-DEL-REPO.git
+git push -u origin main
+```
+
+### SSH (solo la primera vez)
+
+```bash
+# Generar clave si no tenés una
+ssh-keygen -t ed25519 -C "tu-email@ejemplo.com"
+
+# Copiar clave pública al portapapeles (macOS)
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+
+En GitHub: **Settings → SSH and GPG keys → New SSH key** → pegar y guardar.
+
+Probar conexión:
+
+```bash
+ssh -T git@github.com
 ```
 
 > Reemplazá `TU_USUARIO` y el nombre del repo por los tuyos.

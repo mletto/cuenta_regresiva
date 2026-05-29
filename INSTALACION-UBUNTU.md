@@ -4,13 +4,16 @@ Guía paso a paso para ejecutar `cuenta.py` en Ubuntu (pantalla completa, fuente
 
 ## Instalación automática (recomendada)
 
-Si clonaste el repo desde GitHub:
+Si clonaste el repo desde GitHub (SSH):
 
 ```bash
-cd cuenta-regresiva-puma-hyrox   # nombre de tu carpeta
+git clone git@github.com:TU_USUARIO/cuenta-regresiva-puma-hyrox.git
+cd cuenta-regresiva-puma-hyrox
 chmod +x install-ubuntu.sh iniciar.sh run.sh
 ./install-ubuntu.sh
 ```
+
+> En la PC Ubuntu necesitás tu clave SSH en `~/.ssh/` o usar un deploy key del repo.
 
 Activa **inicio de sesión automático** en Configuración → Usuarios y reinicia.
 
