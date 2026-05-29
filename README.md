@@ -12,7 +12,7 @@ Pantalla de cuenta regresiva en **pantalla completa** (`00:45` → `00:00`), tip
 
 ```
 .
-├── cuenta.py              # Aplicación principal
+├── cuenta_regresiva.py              # Aplicación principal
 ├── arduino/               # Sketch del botón de inicio
 ├── fonts/                 # Fuente FF DIN for Puma (incluida)
 ├── requirements.txt
@@ -72,7 +72,7 @@ Guía completa: [INSTALACION-UBUNTU.md](INSTALACION-UBUNTU.md)
 
 ## Configuración
 
-En `cuenta.py`:
+En `cuenta_regresiva.py`:
 
 ```python
 COUNTDOWN_START = 45   # segundos (se muestra como MM:SS)
@@ -99,7 +99,7 @@ Con `INPUT_PULLUP`: reposo = HIGH, presionado = LOW.
 3. **Subir** (Upload)
 4. Probá en **Monitor Serie** a **9600 baud**: al pulsar el botón debe aparecer `START`
 
-`cuenta.py` escucha esa línea y arranca la cuenta (mismo efecto que Espacio).
+`cuenta_regresiva.py` escucha esa línea y arranca la cuenta (mismo efecto que Espacio).
 
 Tras instalar en Ubuntu, cerrá sesión una vez para aplicar el grupo `dialout`.
 

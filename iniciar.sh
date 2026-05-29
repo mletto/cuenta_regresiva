@@ -16,4 +16,4 @@ if command -v xset >/dev/null 2>&1; then
 fi
 
 source "$PROJECT_DIR/venv/bin/activate"
-exec python "$PROJECT_DIR/cuenta.py"
+exec python "$PROJECT_DIR/cuenta_regresiva.py"

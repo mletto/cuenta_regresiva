@@ -10,4 +10,4 @@ if [[ ! -x "$VENV/bin/python" ]]; then
   "$VENV/bin/pip" install -r "$PROJECT_DIR/requirements.txt"
 fi
 
-exec "$VENV/bin/python" "$PROJECT_DIR/cuenta.py" "$@"
+exec "$VENV/bin/python" "$PROJECT_DIR/cuenta_regresiva.py" "$@"

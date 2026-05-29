@@ -1,6 +1,6 @@
 # Cuenta regresiva — Instalación en Ubuntu y arranque automático
 
-Guía paso a paso para ejecutar `cuenta.py` en Ubuntu (pantalla completa, fuente Puma, Arduino opcional) y que inicie sola al encender la PC.
+Guía paso a paso para ejecutar `cuenta_regresiva.py` en Ubuntu (pantalla completa, fuente Puma, Arduino opcional) y que inicie sola al encender la PC.
 
 ## Instalación automática (recomendada)
 
@@ -39,7 +39,7 @@ Copia **toda** la línea (empieza con `ssh-ed25519`).
 
 ### Paso 3 — Agregar la Deploy Key en GitHub
 
-1. Abrí el repo: **https://github.com/mletto/cuenta_regresiva**
+1. Abrí el repo: **[https://github.com/mletto/cuenta_regresiva](https://github.com/mletto/cuenta_regresiva)**
 2. **Settings** → **Deploy keys** → **Add deploy key**
 3. **Title:** `Ubuntu evento` (o el nombre que quieras)
 4. **Key:** pegá la clave pública del paso 2
@@ -115,7 +115,7 @@ chmod +x install-ubuntu.sh iniciar.sh run.sh
 
 ```
 Cuenta Regresiva/
-├── cuenta.py
+├── cuenta_regresiva.py
 ├── requirements.txt
 ├── run.sh
 ├── fonts/
@@ -216,15 +216,17 @@ arduino/cuenta_regresiva/cuenta_regresiva.ino
 ```bash
 cd /home/TU_USUARIO/cuenta-regresiva
 source venv/bin/activate
-python cuenta.py
+python cuenta_regresiva.py
 ```
 
-| Tecla / acción | Efecto |
-|----------------|--------|
+
+| Tecla / acción          | Efecto                                    |
+| ----------------------- | ----------------------------------------- |
 | **Espacio** o **Enter** | Inicia / reinicia la cuenta (sin Arduino) |
-| **ESC** (1ª vez) | Sale de pantalla completa |
-| **ESC** (2ª vez) | Cierra la aplicación |
-| **Botón Arduino** | Envía `START` por serial para iniciar |
+| **ESC** (1ª vez)        | Sale de pantalla completa                 |
+| **ESC** (2ª vez)        | Cierra la aplicación                      |
+| **Botón Arduino**       | Envía `START` por serial para iniciar     |
+
 
 Si ves `Fuente Puma no encontrada; usando Arial` en la terminal, revisa que `fonts/FF DIN for Puma W01 Cond Bold.ttf` exista.
 
@@ -252,7 +254,7 @@ xset -dpms 2>/dev/null
 xset s noblank 2>/dev/null
 
 source venv/bin/activate
-exec python cuenta.py
+exec python cuenta_regresiva.py
 ```
 
 Dale permisos de ejecución:
@@ -296,8 +298,8 @@ X-GNOME-Autostart-enabled=true
 
 Para que no pida contraseña al encender:
 
-1. **Configuración** → **Usuarios** → tu usuario → **Inicio de sesión automático**: activado  
-   (en algunas versiones: **Configuración** → **Pantalla de bloqueo** → desactivar bloqueo al suspender, si molesta)
+1. **Configuración** → **Usuarios** → tu usuario → **Inicio de sesión automático**: activado
+  (en algunas versiones: **Configuración** → **Pantalla de bloqueo** → desactivar bloqueo al suspender, si molesta)
 
 En Ubuntu con **LightDM** también puedes editar:
 
@@ -442,3 +444,4 @@ sudo reboot
 - **Inicio sin Arduino:** barra espaciadora o Enter  
 - **Inicio con Arduino:** botón que envía `START` por serial (9600 baud)  
 - **Salir del modo kiosco:** ESC dos veces (o matar el proceso desde otra terminal)
+
