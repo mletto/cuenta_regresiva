@@ -184,13 +184,30 @@ sudo usermod -aG dialout $USER
 
 Cierra sesión y vuelve a entrar (o reinicia) para que el cambio aplique.
 
-Regla udev opcional (puerto estable):
+Regla udev opcional (puerto estable; también está en `udev/99-arduino.rules` del repo):
 
 ```bash
-echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="2341", MODE="0666", GROUP="dialout"' | sudo tee /etc/udev/rules.d/99-arduino.rules
+sudo cp udev/99-arduino.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
+
+### Cargar el sketch de Arduino
+
+El código del botón está en el repo:
+
+```
+arduino/cuenta_regresiva/cuenta_regresiva.ino
+```
+
+1. Instalá **Arduino IDE** en Ubuntu (o cargá el sketch desde otra PC).
+2. Abrí la carpeta `arduino/cuenta_regresiva/`.
+3. **Herramientas → Placa** → tu modelo (ej. Arduino Uno).
+4. **Herramientas → Puerto** → `/dev/ttyACM0` o `/dev/ttyUSB0`.
+5. **Subir**.
+6. **Monitor Serie** a **9600 baud**: al pulsar el botón debe imprimir `START`.
+
+**Cableado:** pin **2** y **GND** al botón (una pata a cada uno). `INPUT_PULLUP` en el código.
 
 ---
 

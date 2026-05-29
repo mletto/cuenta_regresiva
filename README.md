@@ -13,6 +13,7 @@ Pantalla de cuenta regresiva en **pantalla completa** (`00:45` → `00:00`), tip
 ```
 .
 ├── cuenta.py              # Aplicación principal
+├── arduino/               # Sketch del botón de inicio
 ├── fonts/                 # Fuente FF DIN for Puma (incluida)
 ├── requirements.txt
 ├── run.sh                 # Ejecutar en Mac o Linux (crea venv local)
@@ -80,7 +81,25 @@ SERIAL_BAUDRATE = 9600
 
 ## Arduino
 
-El sketch debe enviar la línea `START` por Serial cuando se presiona el botón.
+Sketch en `arduino/cuenta_regresiva/cuenta_regresiva.ino`.
+
+### Cableado
+
+| Arduino | Botón |
+|---------|--------|
+| Pin **2** | Un terminal |
+| **GND** | Otro terminal |
+
+Con `INPUT_PULLUP`: reposo = HIGH, presionado = LOW.
+
+### Cargar el sketch
+
+1. Abrí la carpeta `arduino/cuenta_regresiva/` en **Arduino IDE**
+2. Seleccioná placa y puerto USB
+3. **Subir** (Upload)
+4. Probá en **Monitor Serie** a **9600 baud**: al pulsar el botón debe aparecer `START`
+
+`cuenta.py` escucha esa línea y arranca la cuenta (mismo efecto que Espacio).
 
 Tras instalar en Ubuntu, cerrá sesión una vez para aplicar el grupo `dialout`.
 
