@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Cuenta Regresiva Puma Hyrox
+Comment=Cuenta regresiva en pantalla completa
+Exec=sh -c 'sleep 3 && @PROJECT_DIR@/iniciar.sh'
+Terminal=false
+X-GNOME-Autostart-enabled=true
